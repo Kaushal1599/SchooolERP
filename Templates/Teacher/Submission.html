@@ -1,0 +1,132 @@
+{% extends "../Base.html" %} {% block body_block %} {% load static %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'css/Add_student.css'  %}" />
+</head>
+
+
+<div class="jumbotron" style="background-color:#333;">
+    <h2 style="color: white;">Submission &nbsp; &nbsp; &nbsp; <a href="{% url 'Teacher_Dashboard' %}"
+            class="btn btn-primary"><i class="fa fa-home" aria-hidden="true"></i>Home</a></h2>
+</div>
+
+
+<div style="margin-left: 18%;">
+
+
+    <h2>Not Submitted</h2>
+    <table class="table" id='myTable'>
+        <thead class="grey lighten-2">
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Roll No</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for Detail in Student  %}
+            <tr>
+                <td>{{Detail.Name}}</td>
+
+                <td>{{Detail.Roll_No}}</td>
+
+
+
+            </tr>
+
+
+
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+
+    <h2> Submitted </h2>
+
+    <table class="table" id='myTable1'>
+        <thead class="grey lighten-2">
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Assignment</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for submisson in Submitted  %}
+            <tr>
+                <td>{{submisson.Student_Name}}</td>
+                <td><a href="{{submisson.Answer_Sheet.url}}" download>Download Assignment</a></td>
+
+            </tr>
+
+
+
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+
+
+
+<div class="wrapper">
+    <!-- Sidebar Holder -->
+    <nav id="sidebar">
+
+
+        <ul class="list-unstyled components">
+
+            <li class="active">
+                <a href="{% url 'Teacher_module:Add_Notes' %}" class="btn btn-simple"> <i class="fa fa-file"
+                        aria-hidden="true"></i> &nbsp;Notes</a>
+            </li>
+            <li class="active">
+                <a href="{% url 'Teacher_module:Assignment' %}" class="btn btn-simple"> <i class="fa fa-file"
+                        aria-hidden="true"></i> &nbsp;Assignment</a>
+            </li>
+
+
+
+
+
+
+
+        </ul>
+    </nav>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        console.log($('#myTable'))
+        $.noConflict();
+        $('#myTable').DataTable();
+        $('#myTable1').DataTable();
+    });
+</script>
+<!-- 
+<script type="text/javascript">
+
+    $('#get').click(function () {
+        //console.log($('#Subject').val())
+        $.ajax({
+            type: "GET",
+            url: "../get_class",
+            data: { "subject": $('#Subject').val() },
+            success: function (data) {
+                console.log(data)
+                for (i = 0; i < data.length; ++i) {
+                    $('.class').append('<option value=' + data[i] + '>' + data[i] + '</option>')
+                }
+            }
+        })
+    });
+
+</script> -->
+
+{% endblock body_block %}

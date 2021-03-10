@@ -1,0 +1,94 @@
+{% extends "../Base.html" %} {% block body_block %} {% load static %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'css/Add_student.css'  %}" />
+</head>
+<div class="jumbotron">
+    <strong>
+        <h2 style="text-align: center;">Profile Info &nbsp; &nbsp; &nbsp; <a href="{% url 'Student_Dashboard' %}"
+                class="btn btn-primary"><i class="fa fa-home" aria-hidden="true"></i>Home</a>
+        </h2>
+    </strong>
+</div>
+<div class="container" style="margin-left: 15%;">
+
+
+
+    <div class="card" style="background-color:white;">
+        <div class="card-header">
+            <img src="{{General_Info.Photo.url}}" alt="" style="width: 40%; height: 40%; margin-left: 30%;">
+
+        </div>
+        <div class="card-body" style="font-size: large;">
+            <div class="form-row">
+                <div class="form-group col-md-6 mb-0">
+                    <strong>Username:-</strong> {{ General_Info.Student_ID }}
+                </div>
+                <div class="form-group col-md-6 mb-0">
+                    <strong>Roll No:-</strong>{{ General_Info.Roll_No }}
+                </div>
+            </div>
+            <br>
+            <div class="form-row">
+                <div class="form-group col-md-6 mb-0">
+                    <strong>Name:-</strong> {{ General_Info.Name }}
+                </div>
+                <div class="form-group col-md-6 mb-0">
+                    <strong>Father Name:-</strong>{{ General_Info.Father_Name }}
+                </div>
+            </div>
+            <br>
+            <div class="form-row">
+                <div class="form-group col-md-6 mb-0">
+                    <strong>Phone Number:-</strong> {{ General_Info.Father_Phone_Number }}
+                </div>
+                <div class="form-group col-md-6 mb-0">
+                    <strong>Blood Group:-</strong>{{ General_Info.Blood_Group }}
+                </div>
+            </div>
+            <br>
+            <div class="form-row">
+                <div class="form-group col-md-6 mb-0">
+                    <strong>Address:-</strong> {{General_Info.Address}}
+                </div>
+                <div class="form-group col-md-6 mb-0">
+                    <strong>Email:-</strong>{{ Info.email }}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</div>
+<div class="wrapper">
+    <!-- Sidebar Holder -->
+    <nav id="sidebar">
+
+
+        <ul class="list-unstyled components">
+
+            <li class="active">
+                <a href="{% url 'Student_module:Notes' %}" class="btn  btn-simple"><i class="fa fa-file"
+                        aria-hidden="true"></i> &nbsp;
+                    Notes</a>
+            </li>
+            <li class="active">
+                <a href="{% url 'Student_module:Profile_Info' %}" class="btn  btn-simple"><i class="fa fa-info"
+                        aria-hidden="true"></i> &nbsp;
+                    Profile</a>
+            </li>
+
+            <li class="active">
+                <a href="{% url 'Student_module:Assignment' %}" class="btn  btn-simple"><i class="fa fa-file"
+                        aria-hidden="true"></i> &nbsp; Assignment
+                </a>
+            </li>
+
+
+
+        </ul>
+    </nav>
+</div>
+
+{% endblock body_block %}

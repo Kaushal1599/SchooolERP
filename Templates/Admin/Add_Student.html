@@ -1,0 +1,100 @@
+{% extends "../Base.html" %} {% load crispy_forms_tags %} {% block body_block %}{% load static %}
+
+<head>
+  <link rel="stylesheet" href="{% static 'css/Add_student.css'  %}" />
+</head>
+
+<div class="jumbotron">
+  <br>
+  <h2>Register Student &nbsp; &nbsp; &nbsp; <a href="{% url 'Admin_Dashboard' %}" class="btn btn-primary"><i
+        class="fa fa-home" aria-hidden="true"></i> Home </a> </h2>
+
+</div>
+
+<div class="container" style="margin-left: 15%;">
+
+
+
+  <form method="POST" , enctype="multipart/form-data" class="form-group">
+    {% csrf_token %}
+    <div class="form-row">
+      <div class="form-group col-md-6 mb-0">
+        {{ Student.Name|as_crispy_field }}
+      </div>
+      <div class="form-group col-md-6 mb-0">
+        {{ Student.Father_Name|as_crispy_field }}
+      </div>
+
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6 mb-0">
+        {{ Student.Roll_No|as_crispy_field }}
+      </div>
+      <div class="form-group col-md-6 mb-0">
+        {{ Student.Father_Phone_Number|as_crispy_field }}
+      </div>
+
+      <div class="form-group col-md-6 mb-0">
+        {{ Student.Alternate_Number|as_crispy_field }}
+      </div>
+      <div class="form-group col-md-6 mb-0">
+        <label for="date">Date_Of_Birth</label>
+        <input type="date" data-date-inline-picker="true" class="form-control" name="date" />
+      </div>
+
+
+      <label for="email">Email</label>
+      <input type="email" name="email" class="form-control" required>
+
+    </div>
+    {{Student.Address|as_crispy_field}}
+    <div class="form-row">
+      <div class="form-group col-md-6 mb-0">
+        {{ Student.Photo|as_crispy_field }}
+      </div>
+      <div class="form-group col-md-6 mb-0">
+        {{ Student.Blood_Group|as_crispy_field }}
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6 mb-0">
+        {{ Academy.Semester|as_crispy_field }}
+      </div>
+      <div class="form-group col-md-6 mb-0">
+        {{ Academy.Branch|as_crispy_field }}
+      </div>
+      <div class="form-group col-md-6 mb-0">
+        {{ Academy.Section|as_crispy_field }}
+      </div>
+    </div>
+
+    <br>
+    <input type="submit" value="Register" class="btn btn-primary" />
+  </form>
+
+</div>
+
+<div class="wrapper">
+  <!-- Sidebar Holder -->
+  <nav id="sidebar">
+
+
+    <ul class="list-unstyled components">
+
+      <li class="active">
+        <a href="{% url 'Admin_module:Create_Student' %}" class="btn btn-simple"><i class="fa fa-user"
+            aria-hidden="true"></i>&nbsp;Add Student</a>
+
+      </li>
+      <li class="active">
+        <a href="{% url 'Admin_module:Create_Teacher' %}" class="btn btn-simple"><i class="fa fa-user"
+            aria-hidden="true"></i>&nbsp;Add Teacher</a>
+
+      </li>
+    </ul>
+
+
+  </nav>
+</div>
+
+{% endblock body_block %}

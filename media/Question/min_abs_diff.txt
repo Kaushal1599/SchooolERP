@@ -1,0 +1,13 @@
+from sys import stdin , stdout
+n = int(stdin.readline())
+arr =  list(map(int,stdin.readline().split()))
+res = []
+arr.sort()
+
+diff = 10**20
+
+for i in range(n-1): 
+    if arr[i+1] - arr[i] < diff: 
+      diff = arr[i+1] - arr[i] 
+stdout.write(str(diff)+"\n")
+  

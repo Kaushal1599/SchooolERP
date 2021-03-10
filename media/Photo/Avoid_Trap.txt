@@ -1,0 +1,80 @@
+#include <bits/stdc++.h>
+
+#define endl '\n'
+#define Max(x) *max_element(x.begin(), x.end())
+#define Min(x) *min_element(x.begin(), x.end())
+#define pb push_back
+#define mp make_pair
+#define rep(i, a, b) for (int i = a; i <= b; i++)
+#define SQ(a) (a) * (a)
+#define fastio ios::sync_with_stdio(0), cin.tie(0), cout.tie(0)
+using namespace std;
+typedef long long int ll;
+typedef vector<int> vi;
+typedef pair<int, int> pi;
+const ll MAX=100001;
+vector<bool> prime(MAX ,true );
+void sieve() 
+{ 
+    for (int p=2; p*p<=MAX; p++) 
+    { 
+        if (prime[p] == true) 
+        {  
+            for (int i=p*p; i<=MAX; i += p) 
+                prime[i] = false; 
+        } 
+    } 
+    // for(int i=0; i<MAX;i++){
+    //     cout<<prime[i]<<" ";
+    // }
+    prime[0]=prime[1]=false;
+    
+} 
+  
+int main()
+{
+  //  cout<<"hye"<<endl;
+   sieve();
+    fastio;
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        ll  r1,r2,n;
+        cin >> r1>>r2;
+        cin>> n;
+        string s;
+        cin>>s;
+        vi numbers(n,99999);
+        numbers[0]=0;
+        if(s[0]=='*' || s[n-1]=='*'){
+            cout<<"No way!"<<endl;
+        }
+        else{
+            ll total=0;
+            for(ll i =0 ; i<n-1;i++){
+                if(prime[i+1]==1){
+                    total++;
+                }
+                if(s[i]!='*')
+                {
+                if(i+2<n && s[i+2]=='#')
+                    numbers[i+2]=min(numbers[i]+1,numbers[i+2]);
+                if(s[i+1]=='#')
+                    numbers[i+1]=min(numbers[i]+1 , numbers[i+1]);
+                if(total * r2 >= i*r1 && i+total < n && s[i+total]=='#')
+                    numbers[i+total]=min(numbers[i+total],numbers[i]+1);
+
+                }
+                
+                
+            }
+            if(numbers[n-1]==99999)
+            cout<<"No way!"<<endl;
+            else
+            cout<<numbers[n-1]<<endl;
+        }
+        
+    }
+    return 0;
+}

@@ -1,0 +1,19 @@
+class Solution:
+    def countSquares(self, matrix: List[List[int]]) -> int:
+        H = len(matrix)
+        if H == 0 or len(matrix[0])==0:
+            return 0
+        W = len(matrix[0])
+    
+        res = 0
+        for i in range(H):
+            for j in range(W):
+                if matrix[i][j] == 1:
+                    if i == 0 or j == 0:
+                        res+=1
+                    else:
+                        val = min(matrix[i-1][j],matrix[i][j-1],matrix[i-1][j-1])+matrix[i][j]
+                        res += val
+                        matrix[i][j]= val
+        return res
+                      

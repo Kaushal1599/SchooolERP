@@ -1,0 +1,69 @@
+{% extends "Base.html" %} {% block body_block %} {% load static %}
+
+<head>
+  <script type="text/javascript">
+    window.history.forward();
+    function noBack() {
+      window.history.forward();
+    } 
+  </script>
+  <link rel="stylesheet" href="{% static 'css/login.css'  %}" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+    integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+</head>
+<!-- <div class="jumbotron">
+  <strong>
+    <h2>Log In</h2>
+  </strong>
+  <form class="form-group" , method="POST">
+    {% csrf_token %}
+    <label for="ID">Enter ID:- </label>
+    <input type="text" name="ID" class="form-control" />
+    <label for="password">Password:-</label>
+    <input type="password" name="password" class="form-control" />
+    <br>
+    <input type="submit" value="Log IN" class="btn btn-primary" />
+  </form>
+
+  <div class="d-flex justify-content-center">
+    <a href="{% url 'reset_password' %}">Forgot your password?</a>
+  </div>
+</div> -->
+
+<div class="container">
+  <div class="d-flex justify-content-center h-100">
+    <div class="card">
+      <div class="card-header">
+        <h3>Log In</h3>
+
+      </div>
+      <div class="card-body">
+        <form method="POST">
+          {% csrf_token %}
+          <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-user"></i></span>
+            </div>
+            <input type="text" class="form-control" name="ID" placeholder="username">
+
+          </div>
+          <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-key"></i></span>
+            </div>
+            <input type="password" class="form-control" name="password" placeholder="password">
+          </div>
+
+          <div class="form-group">
+            <input type="submit" value="Login" class="btn float-right login_btn">
+          </div>
+        </form>
+      </div>
+      <div class="d-flex justify-content-center">
+        <a href="{% url 'reset_password' %}">Forgot your password?</a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+{% endblock body_block %}

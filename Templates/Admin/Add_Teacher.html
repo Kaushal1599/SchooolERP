@@ -1,0 +1,106 @@
+{% extends "../Base.html" %} {% block body_block %} {% load crispy_forms_tags %}
+{% load static %}
+<div class="jumbotron">
+  <br>
+  <h2 style="color: white;">Register Teacher &nbsp; &nbsp; &nbsp; <a href="{% url 'Admin_Dashboard' %}"
+      class="btn btn-primary"><i class="fa fa-home" aria-hidden="true"></i> Home </a> </h2>
+
+</div>
+
+
+
+
+<div class="container" style="margin-left: 15% !important;">
+
+  <head>
+    <link rel="stylesheet" href="{% static 'css/Add_student.css'  %}" />
+  </head>
+
+
+
+
+
+  <form method="POST" class="form-group" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-row">
+      <div class="form-group col-md-6 mb-0">
+        {{ Teacher.Name|as_crispy_field }}
+      </div>
+      <div class="form-group col-md-6 mb-0">
+        {{ Teacher.Teacher_Phone_Number|as_crispy_field }}
+      </div>
+
+    </div>
+    {{Teacher.Address|as_crispy_field}}
+    <div class="form-row">
+      <div class="form-group col-md-6 mb-0">
+        {{ Teacher.Photo|as_crispy_field }}
+      </div>
+      <div class="form-group col-md-6 mb-0">
+        {{ Teacher.email|as_crispy_field }}
+      </div>
+    </div>
+    {{Teacher.Qualification|as_crispy_field}}
+
+    <div class="form-row" id="items">
+      <input type="text" name="Subject[]" size="25" placeholder="Subject" /> &nbsp;
+      <input type="text" name="Semester[]" placeholder="Semester" size="25" /> &nbsp;
+      <input type="text" name="Branch[]" placeholder="Branch" size="25" />&nbsp;
+      <input type="text" name="Section[]" placeholder="Section" size="25" />
+    </div>
+    <br />
+    <br />
+    <input type="button" name="Add" value="Add" class="btn btn-primary" id="Add" />
+    <br />
+    <br />
+
+    <input type="submit" value="Register" class="btn btn-primary" />
+  </form>
+
+</div>
+
+<div class="wrapper">
+  <!-- Sidebar Holder -->
+  <nav id="sidebar">
+
+
+    <ul class="list-unstyled components">
+
+      <li class="active">
+        <a href="{% url 'Admin_module:Create_Student' %}" class="btn btn-simple"><i class="fa fa-user"
+            aria-hidden="true"></i>&nbsp;Add Student</a>
+
+      </li>
+      <li class="active">
+        <a href="{% url 'Admin_module:Create_Teacher' %}" class="btn btn-simple"><i class="fa fa-user"
+            aria-hidden="true"></i>&nbsp;Add Teacher</a>
+
+
+
+    </ul>
+
+
+  </nav>
+</div>
+
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    var i = 0;
+    $("#Add").click(function (e) {
+      e.preventDefault();
+
+      $("#items").append(function (n) {
+        i = i + 1;
+        return (
+          "<div><input type='text' name='Subject[]' + size='25' placeholder='Subject'  />&nbsp; <input type='text' size='25' name='Semester[]' placeholder='Semester'  /> &nbsp;<input type='text' size='25' name='Branch[]' placeholder='Branch'  />&nbsp; <input type='text' size='25' name='Section[]' placeholder='Section'  />  " +
+          " &nbsp;<input type= 'button' value='Delete' id=delete class= 'btn btn-danger' /></div>"
+        );
+      });
+    });
+    $("body").on("click", "#delete", function (e) {
+      $(this).parent("div").remove();
+    });
+  });
+</script>
+{% endblock body_block %}

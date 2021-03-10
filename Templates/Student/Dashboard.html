@@ -1,0 +1,67 @@
+{% extends "../Base.html" %} {% block body_block %} {% load static %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'css/Admin_Dashboard.css'  %}" />
+</head>
+<div class="container" style=" margin-left: 18%;">
+    <br>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-12 col-md-5">
+            <div class="card" style="background-color:white; width: fit-content;">
+                <img src="{{ Basic_Info.Photo.url }}" alt="Profile_Pic" class="card-img-top"
+                    style="height: 200px; width: 250px;">
+                <h4 class="card-title" style="text-align: center;"> <strong
+                        class="text-secondary">{{Basic_Info.Name}}</strong>
+                </h4>
+                <div class="card-body" style="width: 250px;">
+                    <ul class="list-group list-group-flush" style="font-size:small;">
+                        <li class="list-group-item"><i class="fa fa-user"
+                                aria-hidden="true"></i>&nbsp;<strong>Username:-</strong>
+                            {{Basic_Info.Student_ID}}</li>
+                        <li class="list-group-item"><i class="fa fa-phone"
+                                aria-hidden="true"></i>&nbsp;<strong>Phone:-</strong>
+                            {{ Basic_Info.Father_Phone_Number }}</li>
+                        <li class="list-group-item"><i class="fa fa-globe"
+                                aria-hidden="true"></i>&nbsp;<strong>Address:-</strong>
+                            {{ Basic_Info.Address }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="wrapper">
+    <!-- Sidebar Holder -->
+    <nav id="sidebar">
+
+
+        <ul class="list-unstyled components">
+
+            <li class="active">
+                <a href="{% url 'Student_module:Notes' %}" class="btn  btn-simple"><i class="fa fa-file"
+                        aria-hidden="true"></i> &nbsp;
+                    Notes</a>
+            </li>
+            <li class="active">
+                <a href="{% url 'Student_module:Profile_Info' %}" class="btn  btn-simple"><i class="fa fa-info"
+                        aria-hidden="true"></i> &nbsp;
+                    Profile</a>
+            </li>
+
+            <li class="active">
+                <a href="{% url 'Student_module:Assignment' %}" class="btn  btn-simple"><i class="fa fa-file"
+                        aria-hidden="true"></i> &nbsp; Assignment
+                </a>
+            </li>
+
+
+
+        </ul>
+    </nav>
+</div>
+
+{% endblock body_block %}

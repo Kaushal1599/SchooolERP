@@ -1,0 +1,47 @@
+{% extends "../Base.html" %} {% block body_block %} {% load static %}
+
+<head>
+
+
+
+  <link rel="stylesheet" href="{% static 'css/Admin_Dashboard.css'  %}" />
+</head>
+<div class="jumbotron">
+  <br>
+  <strong>
+    <h1 class="text-secondary">Welcome</h1>
+  </strong>
+  <strong>
+    <h2 class="text-secondary">Admin Dashboard!</h2>
+  </strong>
+
+
+</div>
+<div class="wrapper">
+  <!-- Sidebar Holder -->
+  <nav id="sidebar">
+
+
+    <ul class="list-unstyled components">
+
+      <li class="active">
+        <a href="{% url 'Admin_module:Create_Student' %}" class="btn btn-simple"><i class="fa fa-user"
+            aria-hidden="true"></i>&nbsp;Add Student</a>
+
+      </li>
+      <li class="active">
+        <a href="{% url 'Admin_module:Create_Teacher' %}" class="btn btn-simple"><i class="fa fa-user"
+            aria-hidden="true"></i>&nbsp;Add Teacher</a>
+
+
+      </li>
+
+    </ul>
+
+
+  </nav>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous"></script>
+
+{% endblock body_block %}

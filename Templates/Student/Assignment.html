@@ -1,0 +1,125 @@
+{% extends "../Base.html" %} {% block body_block %} {% load static %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'css/Add_student.css'  %}" />
+</head>
+<div class="jumbotron">
+    <strong>
+        <h2 style="text-align: center;">Assignment &nbsp; &nbsp; &nbsp; <a href="{% url 'Student_Dashboard' %}"
+                class="btn btn-primary"><i class="fa fa-home" aria-hidden="true"></i>Home</a> </h2>
+    </strong>
+
+</div>
+
+<div class="container" style="margin-left: 15%;">
+
+
+    <table class="table" id="myTable">
+        <thead class="grey lighten-2">
+            <tr>
+                <th>Subject</th>
+                <th>Assignment</th>
+                <th>Description</th>
+                <th>Upload</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for Detail in Details  %}
+            <tr>
+                <td>{{Detail.Subject}}</td>
+
+                <td><a href="{{Detail.Question_Paper.url}}" download>Download Assignment</a></td>
+                <td>{{Detail.Description}}</td>
+                <td><button class="btn btn-primary button" data-toggle="modal" data-target="#exampleModalCenter"
+                        id="{{Detail.id}}" name="Submit">Submit</button></td>
+            </tr>
+
+
+
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+
+</div>
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Upload Assignment</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method='POST' class="form" enctype="multipart/form-data" id='my-form'>
+                    {% csrf_token %}
+
+                    <input type="file" name="assignment" class="form-control" required>
+
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Upload</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="wrapper">
+    <!-- Sidebar Holder -->
+    <nav id="sidebar">
+
+
+        <ul class="list-unstyled components">
+
+            <li class="active">
+                <a href="{% url 'Student_module:Notes' %}" class="btn  btn-simple"><i class="fa fa-file"
+                        aria-hidden="true"></i> &nbsp;
+                    Notes</a>
+            </li>
+            <li class="active">
+                <a href="{% url 'Student_module:Profile_Info' %}" class="btn  btn-simple"><i class="fa fa-info"
+                        aria-hidden="true"></i> &nbsp;
+                    Profile</a>
+            </li>
+
+            <li class="active">
+                <a href="{% url 'Student_module:Assignment' %}" class="btn  btn-simple"><i class="fa fa-file"
+                        aria-hidden="true"></i> &nbsp; Assignment
+                </a>
+            </li>
+
+
+
+        </ul>
+    </nav>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        console.log($('#myTable'))
+        $.noConflict();
+        $('#myTable').DataTable();
+        $('.button').click(function () {
+            var value = event.target.id;
+            console.log(value)
+            $(".hidden").remove()
+            $("#my-form").append(function () {
+                return `<input type='hidden' name='id' class='hidden' value=${value} >`
+            })
+        })
+    });
+</script>
+
+{% endblock body_block %}

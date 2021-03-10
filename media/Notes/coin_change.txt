@@ -1,0 +1,12 @@
+from sys import stdin , stdout 
+n = int(stdin.readline())
+coins =	 list(map(int,stdin.readline().split()))
+N = int(stdin.readline())
+dp = [0 for i in range(N+1)]
+dp[0]=1
+for i in range(n):
+  for j in range(coins[i],N+1):
+    dp[j]+=dp[j-coins[i]]
+stdout.write(str(dp[N]))
+    
+    

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>E-Notes</title>
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+  <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+  <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
+
+  <script type="text/javascript" charset="utf8"
+    src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+  <script type="text/javascript" charset="utf8"
+    src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script> -->
+
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" />
+  <link rel="stylesheet" href="{% static 'css/master.css'  %}" />
+
+</head>
+
+
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <span class="navbar-brand">E-Notes</span>
+      {% if user.is_authenticated %}
+
+
+      <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
+        <i class="glyphicon glyphicon-align-left"></i>
+        <span><i class="fa fa-bars" aria-hidden="true"></i></span>
+        {% endif %}
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav w-100 justify-content-end">
+
+            {% if user.is_authenticated %}
+            <a class="nav-item nav-link" href="{% url 'Change_Password' %}"><i class="fa fa-key"
+                aria-hidden="true"></i>Change Password</a>
+            <a class="nav-item nav-link" href="{% url 'user_logout' %}"><i class="fa fa-sign-out"
+                aria-hidden="true"></i>Sign
+              Out</a>
+            {% endif %}
+
+          </div>
+        </div>
+    </div>
+  </nav>
+
+
+  <br>
+  <br>
+  {% if messages %}
+  {% for message in messages  %}
+
+  <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{message.tags}}{% endif %}" role="alert"
+    style="margin-left: 15% !important;">
+
+    <strong>{{message}}</strong>
+  </div>
+
+
+  {% endfor %}
+
+  {% endif %}
+
+
+  {% block body_block %} {% endblock body_block %}
+  <!-- 
+  <script src=" https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+      </script> -->
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script>
+
+</body>
+
+</html>
+<!-- 
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous"></script> -->
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    // your code. and don't forget the '#' in front of item.
+    window.setTimeout(function () {
+      $(".alert").fadeTo(500, 0).slideUp(500, function () {
+        $(this).remove();
+      });
+    }, 3000);
+
+
+  });
+
+
+  $(document).ready(function () {
+
+
+
+    $('#sidebarCollapse').on('click', function () {
+      $('#sidebar, #content').toggleClass('active');
+      $('.collapse.in').toggleClass('in');
+      $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+    });
+  });
+
+
+</script>
